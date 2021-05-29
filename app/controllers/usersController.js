@@ -1,42 +1,47 @@
+const User = require('../models/users');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/users');
 
 const usersController = {};
 
 //register
-usersController.register = (req, res) => {
-    const body = req.body;
-    const user = new User(body)
-     user.save()
-        .then(user => {
-            res.json(user)
-        })
-        .catch(err => {
-            res.json(err)
-        })
+usersController.fetchAll = async (req, res) => {
+    const users = await User.find()
+         res.status(200).json(users)
+}
+
+usersController.register = async (req, res) => {
+    const body = req.body
+     console.log(body,'body')
+    const user = await User.create(body)
+     console.log(user, 'user') 
+         res.status(200).json(user)
 }
 
 //login
 usersController.login = (req, res) => {
-    const body = req.body;
-    User.findOne({email: body.email})
+    const body = req.body
+    console.log(body, 'body')
+    User.findOne({email: body.email}).populate('role')
         .then(user => {
+            console.log(user)
             if(!user) {
                 res.json({
-                    error: 'invalid email or password'
+                    errors: 'invalid email or password'
                 })
             }
+            console.log(user, 'user')
             bcryptjs.compare(body.password, user.password)
                     .then(match => {
                         if(match) {
                             const tokenData =  {
-                                _id = user._id,
-                                 email = user.email,
-                                 username = user.username
+                                _id: user._id,
+                                 email: user.email,
+                                 username: user.username
                             }
-                 const token = jwt.sign(tokenData, 'jwt2456', {expiresIn : '2d'})
+                 const token = jwt.sign(tokenData, 'jwt@2456', {expiresIn : '2d'})
                  res.json({
+                     ...user.toObject(),
                      token: `${token}`
                  })
               }else {
@@ -53,6 +58,11 @@ usersController.account = (req, res) => {
     res.send = user
 }
 
+
+usersController.fetchByToken = (req, res) => {
+    const {user} = req
+res.status(200).json(user)}
+
 usersController.logout = (req, res) => {
     const {user, token} = req
     User.findByIdAndUpdate(user._id, { $pull : { tokens: { token: token}}  })
@@ -63,3 +73,7 @@ usersController.logout = (req, res) => {
             res.json(err)
         })
 }
+
+
+
+module.exports = usersController

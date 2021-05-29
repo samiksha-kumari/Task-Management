@@ -29,6 +29,12 @@ const userSchema = new Schema({
         required: true,
         minLength: 8,
         maxLength: 128
+    },
+    role: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref:'Role'
+        // ref : 'Role', required 'true'
     }
 })
 
@@ -41,13 +47,13 @@ userSchema.pre('save', function(next) {
                     bcryptjs.hash(user.password, salt)
                             .then(encrypt => {
                                 user.password = encrypt
+                                next()
                             })
                 })  
     }else {
         next();
     }
 })
-
 
 const User = mongoose.model('User', userSchema);
 
