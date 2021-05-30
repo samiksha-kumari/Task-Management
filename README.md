@@ -2,6 +2,26 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+Scope of the work.
+Two types of users in the system: manager and member
+
+Member can login and add task for herself
+Manager can do the same and also add task for a member or multiple ones in one go
+
+Member can see their own tasks
+Manager can do the same along with seeing any other member's task 
+
+
+Funtionalities:-
+Registration page
+Login page
+View my tasks - for both users
+View everyone’s task (with a filter to select one member as well) - for manager only
+Add task (individual) - for both users
+Add task (for others and multiple individuals) - for manager only.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
