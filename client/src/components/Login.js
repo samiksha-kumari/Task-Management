@@ -19,7 +19,7 @@ class Login extends React.Component{
             }
             axios.post('http://localhost:3010/user/login', loginData)
                  .then(response => {
-                     console.log(response, 'data')
+                    //  console.log(response, 'data')
                      if(response && response.data && response.data.token){
                         this.props.setCurrentUser(response.data)
                         localStorage.setItem('token',response.data.token)

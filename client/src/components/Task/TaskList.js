@@ -26,7 +26,7 @@ class TaskList extends React.Component {
            })
              .then(response => {
                 const tasks = response.data
-                console.log(tasks, 'task')
+                // console.log(tasks, 'task')
                 this.setState({ tasks, isData: true })
                 console.log(response.data)
             })
@@ -83,7 +83,7 @@ class TaskList extends React.Component {
                 />
                 {this.state.isData ? (
                 <React.Fragment>
-                    <table>
+                    <table className="table table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -103,13 +103,13 @@ class TaskList extends React.Component {
                                         <td>{task.name}</td>
                                         <td>{task.userId.username}</td>
                                         <td>{moment(task.createdAt).format('DD-MM-YYYY')}</td>
-
+                                    <td>
                                         <td><button className="btn btn-primary" background-color = "green" onClick={() => { this.showTask(task) }}>Show</button></td>
 
                                         <td><button className="btn btn-success" background-color = "green" onClick={() => { this.completeOrIncomplete(task) }}>{task.isCompleted ? 'Incomplete':'Complete'}</button></td>
 
                                         <td><button className="btn btn-danger" background-color = "red" onClick={() => { this.removeTask(task) }}>Remove</button></td>
-                                        
+                                        </td>  
                                         
                                     </tr>
                                 )

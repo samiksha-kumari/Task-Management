@@ -6,7 +6,6 @@ import Login from './components/Login'
 import Logout from './components/Logout'
 import TaskForm from './components/Task/TaskForm'
 import TaskList from './components/Task/TaskList'
-import ViewTask from './components/Task/ViewTask'
 import './App.css';
 import {Navbar , Nav, Button } from 'react-bootstrap'
 import axios from 'axios'

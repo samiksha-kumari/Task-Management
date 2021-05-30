@@ -13,7 +13,7 @@ router.get('/user/by-token',authenticateUser, usersController.fetchByToken)
 router.post('/user/register', usersController.register)
 router.post('/user/login', usersController.login)
 router.get('/user/account', authenticateUser, usersController.account)
-router.delete('/user/logout', usersController.logout)
+
 
 
 //role

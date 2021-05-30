@@ -70,7 +70,6 @@ class Register extends React.Component{
                 <div className="col-sm-4"></div>
                 <div className="col-sm-4" style={{backgroundColor: "red",backgroundImage:`linear-gradient(#add8e6,#808080,#90EE90)`}}>
                     <div className="container">
-                        {/* <img src={images} alt="img" height="200px" width="200px" className="mx-auto d-block rounded-circle"></img> */}
                         <h1 className="text-center pt-1">REGISTER</h1><br/>
                         <form onSubmit={this.handleSubmit}>
                             <div className="container form-group">
@@ -90,7 +89,7 @@ class Register extends React.Component{
                             </div>
                             <div className="container form-group">
                                 <span style={{color:'red'}}>{this.state.errorMessage}</span>
-                                                            </div>
+                           </div>
                         </form>
                     </div>
                 </div>

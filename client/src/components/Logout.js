@@ -10,7 +10,7 @@ class Logout extends React.Component {
     
     handleSubmit = (e) => {
         e.preventDefault()
-    debugger
+       debugger
             localStorage.removeItem('token')
         this.props.setCurrentUser(null)
         this.props.history.push('/user/login')

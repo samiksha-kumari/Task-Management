@@ -6,7 +6,7 @@ const authenticateUser = (req, res, next) => {
 
     if(req.header('x-auth')) {
         const token = req.header('x-auth')
-     console.log(token,'token')
+    //  console.log(token,'token')
         let tokenData
      try {
         tokenData = jwt.verify(token, 'jwt@2456')

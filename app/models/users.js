@@ -34,7 +34,6 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true,
         ref:'Role'
-        // ref : 'Role', required 'true'
     }
 })
 

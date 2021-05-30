@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import SelectBox from 'react-select'
+import '../../App.css';
 import { Button, Form, Label, Input, Col } from 'reactstrap'
 
 
@@ -82,10 +83,10 @@ this.setState({userIds:val})
 
     render(){
         return(
-            <div>
+            <div className="container-fluid">
                 <Form onSubmit= {this.handleSubmit}>
-                <Col md={6}>
-                               <h2><Label htmlFor='task'>Task</Label></h2> 
+                  <h2 className="col-sm-4" style= {{textAlign : "center"}}><Label htmlFor='task'>Task</Label></h2> 
+                <Col md={6}  style= {{textAlign : "center"}}>
                                 <Input 
                                 type='text'
                                 id='name' 
@@ -93,16 +94,21 @@ this.setState({userIds:val})
                                 value={this.state.name}  
                                 onChange={this.handleChange} 
                                 placeholder='enter task'/>
+
                      </Col>
+                     <Col md={6}>
                      {this.props.currentUser && (this.props.currentUser.role?.name||'').toLowerCase()==='manager'?(
                          <SelectBox
+                         className="text-center pt-1"
                          options={(this.props.users||[]).map(c=>({label:c.username,value:c._id}))}
                          value={this.state.userIds}
                          isMulti
                          onChange={this.onChangeUserIds}
+                         style={{height:"600px", width: "100%"}}
                          />
+                         
                      ):null}
-                    
+                    </Col>
                     <Button className="btn btn-primary" type="submit" onClick={this.handleSubmit} value = "Add">{this.props.isEdit?'update':'add'}</Button>
                 </Form>   
             </div>
